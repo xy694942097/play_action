@@ -3,7 +3,7 @@ name: Play Ubuntu
 on:
   push:
     branches:
-      - 'main'
+      - '**'
     paths:
       - '**'
 
