@@ -1,0 +1,35 @@
+name: Play Ubuntu
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '**'
+
+env:
+  CD_DIR: Nope
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # windows-latest  macos-latest
+
+    steps:
+    - name: step 1 Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Debug Session
+      uses: csexton/debugger-action@master
+
+    - name: step 3 notify feishu bot
+      id: notify_feishu_bot
+      run: |
+        curl -X POST https://open.feishu.cn/open-apis/bot/v2/hook/d02281c3-2c9d-41ab-af42-6849f3181c35 \
+            -H 'Content-Type: application/json' \
+            -d '{
+                "msg_type": "text",
+                "content": {
+                  "text": "Ok"
+                }
+            }'
+            # -d '{"msg_type":"interactive","card":"{\"schema\":\"2.0\",\"config\":{},\"header\":{\"title\":{\"tag\":\"plain_text\",\"content\":\"aws ecr仓库通知\"}},\"body\":{\"elements\":[{\"tag\":\"div\",\"text\":{\"tag\":\"lark_md\",\"content\":\"<at id=${{ env.FEISHU_USER_ID }}></at>镜像已推送完成!\"}},{\"tag\":\"div\",\"text\":{\"tag\":\"lark_md\",\"content\":\"github链接: [${{ env.GIT_REPO_NAME }}](${{ env.GIT_REPO_URL }})\"}},{\"tag\":\"div\",\"text\":{\"tag\":\"lark_md\",\"content\":\"repo链接: [${{ env.ECR_REPOSITORY }}](${{ env.ECR_REPO_URL }})\"}},{\"tag\":\"div\",\"text\":{\"tag\":\"lark_md\",\"content\":\"**镜像TAG**: ${{ env.IMAGE_TAG }}\"}},{\"tag\":\"div\",\"text\":{\"tag\":\"lark_md\",\"content\":\"**镜像DIGEST**: ${{ env.DIGEST }}\"}}]}}"}'
