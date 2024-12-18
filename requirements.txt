@@ -1,4 +1,4 @@
-aiohttp==3.9.0b0
+aiohttp==3.10.11
 apscheduler==3.10.4
 astor==0.8.1
 aws_xray_sdk==2.12.1
