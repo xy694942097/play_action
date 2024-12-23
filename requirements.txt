@@ -1,7 +1,7 @@
 aiohttp==3.10.11
 apscheduler==3.10.4
 astor==0.8.1
-aws_xray_sdk==2.12.1
+aws_xray_sdk==2.14.0
 boto3==1.28.21
 Flask==3.0.3
 Flask-Cors==4.0.2
