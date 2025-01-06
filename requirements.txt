@@ -5,7 +5,7 @@ aws_xray_sdk==2.12.1
 boto3==1.28.21
 Flask==3.0.3
 Flask-Cors==4.0.2
-Flask-SocketIO==5.3.6
+Flask-SocketIO==5.5.1
 graphviz==0.20.1
 imageio==2.33.0
 imageio-ffmpeg==0.4.9
